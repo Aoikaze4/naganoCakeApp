@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :customers
-  
+
   get 'top', to: 'homes#top'
   get 'about', to: 'homes#about'
   root to: 'homes#top'
