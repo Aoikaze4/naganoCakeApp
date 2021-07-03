@@ -6,9 +6,8 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    ##@item.save!
-    ##ジャンル登録しないとダメと言われるのでジャンル登録が先
-    redirect_to root_path
+    @item.save!
+    redirect_to item_path(@item.id)
   end
 
   def index
@@ -16,6 +15,6 @@ class Admin::ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name,:introduction,:price,:is_active,:image)
+    params.require(:item).permit(:name, :genre_id, :introduction, :price, :is_active, :image)
   end
 end

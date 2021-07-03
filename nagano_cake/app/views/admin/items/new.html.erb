@@ -17,10 +17,10 @@
     <%= f.label "商品説明", class: "col-md-3" %>
     <%= f.text_area :introduction, class: "form-control col-md-5", placeholder: "ここに説明文を記述します" %>
   </div>
-  <!--div class="form-group row text-center">
-    <!--%= f.label "ジャンル", class: "col-md-3" %>
-    <!--%= f.select :genre_id, @genres.all, :id, :name, include_blank: "-- 選択してください" %>
-  <!--/div ジャンルのDB中身からっぽなので一度保留-->
+  <div class="form-group row text-center">
+    <%= f.label "ジャンル", class: "col-md-3" %>
+    <%= f.collection_select :genre_id, @genres.all, :id, :name, include_blank: "-- 選択してください --" %>
+  </div>
   <div class="form-group row text-center">
     <%= f.label "税抜価格", class: "col-md-3" %>
     <%= f.text_field :price, class: "form-control col-md-5", placeholder: "1000" %><span class="m-1">円</span>

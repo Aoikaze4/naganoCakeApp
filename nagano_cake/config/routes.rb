@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :customers
     resources :addresses
     resources :items
-    resources :genres
+    resources :genres, only: [:index,:show]
     resources :cart_items
     resources :orders
     resources :order_items
