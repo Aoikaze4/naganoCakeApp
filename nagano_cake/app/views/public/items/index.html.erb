@@ -1,15 +1,14 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-5 my-3 d-flex align-items-end">
-      <h1>商品一覧<h4> (全</h4><span>100<!-- IDの数を引っ張ってくる --></span><h4>件) </h4></h1>
-    </div>
-    <div class="col-md-7">
-      <div class="row d-flex align-items-end mt-4">
-        <p style="color: red" class="m-0">※ジャンル検索の場合、「商品一覧」の部分は<b>(ジャンル名)</b>一覧に変更する</p>
-      </div>
-      <div class="row d-flex align-items-end">
-        <p style="color: red" class="m-0"><例>「ケーキ一覧」</p>
-      </div>
+      <h1>商品一覧<h4 class="ml-2"> (全<span><%= @items.count %></span>件) </h4></h1>
     </div>
   </div>
+
+  <% @items.each do |f| %>
+  <%= attachment_image_tag f, :image, size: "100x100", fallback: "no_image.jpg" %><br />
+  <%= link_to f.name, item_path(f.id) %><br>
+  <span>￥</span><%= f.price %><br>
+  <%= paginate @items %>
+  <% end %>
 </div>

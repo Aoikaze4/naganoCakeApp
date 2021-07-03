@@ -1,6 +1,7 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).reverse_order
+    ##@acitve_items = Item.where(is_active: "True") ←アクティブのもののみ使用する場合
   end
 
   def show
