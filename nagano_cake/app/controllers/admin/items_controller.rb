@@ -1,7 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def new
     @item = Item.new
-    @ac
     @genres = Genre.all
   end
 
@@ -12,6 +11,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
+    @items = Item.all
   end
 
   private

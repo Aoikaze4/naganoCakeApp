@@ -1,1 +1,19 @@
-とあるなんたらのいんでっくす
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-secondary text-center">
+      <h2>商品一覧</h2>
+    </div>
+  </div>
+  <% @items.each do |f| %>
+  <%= f.id %>
+  <%= f.name %>
+  <%= f.price %>
+  <%= f.genre.name %>
+  <%= f.is_active %>
+  <% if f.is_active == true %>
+  <p style="green">販売中</p>
+  <% else %>
+  <p style="gray">販売停止中</p>
+  <% end %>
+  <% end %>
+</div>

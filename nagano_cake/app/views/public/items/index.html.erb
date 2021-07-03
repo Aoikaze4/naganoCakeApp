@@ -5,10 +5,16 @@
     </div>
   </div>
 
-  <% @items.each do |f| %>
-  <%= attachment_image_tag f, :image, size: "100x100", fallback: "no_image.jpg" %><br />
-  <%= link_to f.name, item_path(f.id) %><br>
-  <span>￥</span><%= f.price %><br>
-  <%= paginate @items %>
-  <% end %>
+  <div class="container">
+    <div class="row">
+      <% @items.each do |f| %>
+      <div class="col-3 mb-3">
+        <%= attachment_image_tag f, :image, size: "100x100", fallback: "no_image.jpg" %><br />
+        <%= link_to f.name, item_path(f.id) %><br>
+        <span>￥</span><%= f.price %><br>
+        <%= paginate @items %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>

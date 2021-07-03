@@ -27,10 +27,10 @@
   </div>
   <div class="form-group row d-flex align-items-center text-center">
     <%= f.label "販売ステータス", class: "col-md-3" %>
-    <%= f.radio_button :is_active, "True", class: "mb-2 mr-1", checked: true %>
-    <%= f.label :is_active, "販売中", value: "True", class: "mr-3" %>
-    <%= f.radio_button :is_active, "False", class: "mb-2 mr-1" %>
-    <%= f.label :is_active, "販売停止中", value: "False" %>
+    <%= f.radio_button :is_active, true, class: "mb-2 mr-1", checked: true %>
+    <%= f.label :is_active, "販売中", value: true, class: "mr-3" %>
+    <%= f.radio_button :is_active, false, class: "mb-2 mr-1" %>
+    <%= f.label :is_active, "販売停止中", value: false %>
   </div>
 
   <div class="form-group text-center">
