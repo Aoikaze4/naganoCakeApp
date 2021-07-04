@@ -3,17 +3,33 @@
     <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-secondary text-center">
       <h2>商品一覧</h2>
     </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-3 mt-5 m-4 px-4 py-1 text-right">
+      <%= link_to "〇にプラス", new_admin_item_path %>
+    </div>
   </div>
-  <% @items.each do |f| %>
-  <%= f.id %>
-  <%= f.name %>
-  <%= f.price %>
-  <%= f.genre.name %>
-  <%= f.is_active %>
-  <% if f.is_active == true %>
-  <p style="green">販売中</p>
-  <% else %>
-  <p style="gray">販売停止中</p>
-  <% end %>
-  <% end %>
+  <table class="table table-hover table-inverse col-md-12">
+    <thead>
+      <th>商品ID</th>
+      <th colspan="3">商品名</th>
+      <th>税抜き価格</th>
+      <th colspan="3">ジャンル</th>
+      <th>ステータス</th>
+    </thead>
+    <tbody>
+      <% @items.each do |f| %>
+      <tr>
+        <td><%= f.id %></td>
+        <td colspan="3"><%= f.name %></td>
+        <td><%= f.price %></td>
+        <td colspan="3"><%= f.genre.name %></td>
+        <% if f.is_active == true %>
+        <td class="text-success">販売中</td>
+        <% else %>
+        <td class="text-secondary">販売停止中</td>
+        <% end %>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
 </div>
