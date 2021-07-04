@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-secondary text-center">
+    <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-info text-center">
       <h2>商品一覧</h2>
     </div>
     <div class="col-md-4"></div>
-    <div class="col-md-3 mt-5 m-4 px-4 py-1 text-right">
-      <%= link_to "〇にプラス", new_admin_item_path %>
+    <div class="col-md-3 mt-5 ml-5 text-right">
+      <%= link_to new_admin_item_path, class: "btn", method: :get do %>
+        <i class="fas fa-plus-circle fa-3x"></i>
+      <% end %>
     </div>
   </div>
   <table class="table table-hover table-inverse col-md-12">
@@ -20,16 +22,18 @@
       <% @items.each do |f| %>
       <tr>
         <td><%= f.id %></td>
-        <td colspan="3"><%= f.name %></td>
-        <td><%= f.price %></td>
+        <td colspan="3"><u><%= link_to f.name, item_path(f.id), class: "text-body" %></u></td>
+        <td><%= f.price.to_s(:delimited, delimiter: ',') %></td>
         <td colspan="3"><%= f.genre.name %></td>
         <% if f.is_active == true %>
         <td class="text-success">販売中</td>
         <% else %>
         <td class="text-secondary">販売停止中</td>
         <% end %>
-        <% end %>
       </tr>
+      <% end %>
     </tbody>
   </table>
+
+  <%= paginate @items %>
 </div>
