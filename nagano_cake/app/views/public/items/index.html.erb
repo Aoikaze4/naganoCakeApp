@@ -1,20 +1,21 @@
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-5 my-3 d-flex align-items-end">
+  <div class="row">
+    <div class="col-md-5 my-4 d-flex align-items-end">
       <h1>商品一覧<h4 class="ml-2"> (全<span><%= @items.count %></span>件) </h4></h1>
     </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <% @items.each do |f| %>
-      <div class="col-3 mb-3">
-        <%= attachment_image_tag f, :image, size: "100x100", fallback: "no_image.jpg" %><br />
-        <%= link_to f.name, item_path(f.id) %><br>
-        <span>￥</span><%= f.price.to_s(:delimited, delimiter: ',') %><br>
-        <%= paginate @items %>
-      </div>
-      <% end %>
+  <div class="row">
+    <% @items.each do |f| %>
+    <div class="col-3 mb-3">
+      <%= attachment_image_tag f, :image, size: "120x120", fallback: "no_image.jpg" %><br />
+      <%= link_to f.name, item_path(f.id) %><br>
+      <span>￥</span><%= f.price.to_s(:delimited, delimiter: ',') %><br>
     </div>
+    <% end %>
+  </div>
+
+  <div class="row justify-content-center mt-3">
+    <%= paginate @items %>
   </div>
 </div>
