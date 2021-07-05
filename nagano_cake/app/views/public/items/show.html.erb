@@ -4,19 +4,17 @@
       <%= attachment_image_tag @item, :image, size: "300x300", fallbaxk: "no_image.jpg" %>
     </div>
     <div class="col-md-8">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <h2><%= @item.name %></h2>
-        <div class="col-md-8">
-          <%= @item.introduction %>
+        <div class="col-md-12">
+          <p><%= @item.introduction %></p>
         </div>
-        <div class="col-md-8">
-          <h3><span>￥</span><%= @item.price %></h3>
+        <div class="col-md-12">
+          <h3><span>￥</span><%= @item.price %><span class="add_tax"> (税込み)</span></h3>
         </div>
-        <div>
-          <p>仮入れ　個数選択（プルダウン）</p>
-        </div>
-        <div>
-          <%= link_to "カートに入れる", root_path, class: "btn btn-success" %>
+        <div class="row">
+          <p class="col-md-4">仮入れ　個数選択</p>
+          <%= link_to "カートに入れる", root_path, class: "btn btn-success col-md-3" %>
         </div>
       </div>
     </div>
