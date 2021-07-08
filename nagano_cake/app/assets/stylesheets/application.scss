@@ -17,6 +17,10 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+img{
+  object-fit: cover;
+}
+
 .pagination{
   justify-content: center;
 }

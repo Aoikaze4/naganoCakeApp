@@ -10,51 +10,21 @@
 
   <h3 class="m-3">新着商品</h3>
   <div class="row justify-content-start">
-      <!-- ここ以降はcreatd_atのカラム参照して降順でeachで4個抜き出し -->
+    <% @items.each do |f| %>
       <div class="col-3">
         <div>
-          リンク+画像ゾーン
+          <%= link_to item_path(f.id) do %>
+          <%= attachment_image_tag f, :image, size: "120x120", fallback: "no_image.jpg",style: "width: 160px; height: 160px;", class: "img-fluid mx-3"%>
+          <% end %>
         </div>
         <div>
-          商品名
+          <p class="my-1"><%= f.name %></p>
         </div>
         <div>
-          価格
+          <p>￥ <%= f.price.to_s(:delimited, delimiter: ',') %></p>
         </div>
       </div>
-      <div class="col-3">
-        <div>
-          リンク+画像ゾーン
-        </div>
-        <div>
-          商品名
-        </div>
-        <div>
-          価格
-        </div>
-      </div>
-      <div class="col-3">
-        <div>
-          リンク+画像ゾーン
-        </div>
-        <div>
-          商品名
-        </div>
-        <div>
-          価格
-        </div>
-      </div>
-      <div class="col-3">
-        <div>
-          リンク+画像ゾーン
-        </div>
-        <div>
-          商品名
-        </div>
-        <div>
-          価格
-        </div>
-      </div>
+      <% end %>
     </div>
     <%= link_to "全ての商品を見る >", items_path, class: "my-1 float-right" %>
   </div>
