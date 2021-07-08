@@ -1,4 +1,7 @@
 class Public::CustomersController < ApplicationController
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  def index
+  end
+
+  def show
+  end
 end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :admins
   devise_for :customers
+  devise_for :admins
 
   get 'top', to: 'homes#top'
   get 'about', to: 'homes#about'
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :addresses
     resources :items
     resources :genres, only: [:index,:show]
-    resources :cart_items
+    get "/cart_items", :to=>"cart_items#index"
     resources :orders
     resources :order_items
   end

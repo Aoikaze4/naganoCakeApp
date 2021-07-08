@@ -18,7 +18,7 @@
           <% end %>
         </div>
         <div>
-          <p class="my-1"><%= f.name %></p>
+          <p class="my-1"><%= link_to f.name, item_path(f.id) %></p>
         </div>
         <div>
           <p>￥ <%= f.price.to_s(:delimited, delimiter: ',') %></p>

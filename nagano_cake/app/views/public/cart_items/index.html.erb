@@ -1,0 +1,7 @@
+<% if @cart_items == nil %>
+  <div>なんもないで</div>
+<% else %>
+  <% @cart_items.each do |f| %>
+    <%= f.customer_id %>
+  <% end %>
+<% end %>
