@@ -14,8 +14,19 @@ class Admin::ItemsController < ApplicationController
     @items = Item.page(params[:page]).per(10)
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
+  def add_tax_price
+    tax = 1.10
+    (@item.price * tax).round
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :genre_id, :introduction, :price, :is_active, :image)
   end
+
+  helper_method :add_tax_price
 end

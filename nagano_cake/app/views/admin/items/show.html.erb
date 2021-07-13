@@ -1,1 +1,24 @@
-しょーーーーーーーーー
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= attachment_image_tag @item, :image, size: "300x300", fallbaxk: "no_image.jpg" %>
+    </div>
+    <div class="col-md-8">
+      <div class="col-md-12">
+        <h2><%= @item.name %></h2>
+        <div class="col-md-12">
+          <p><%= @item.introduction %></p>
+        </div>
+        <div class="col-md-12">
+          <p><%= @item.genre %></p>
+        </div>
+        <div class="col-md-12">
+          <h3><span>税込み価格<br><h4>(税抜き価格)</h4></span>
+          <span><%= add_tax_price.to_s(:delimited, delimiter: ',') %></span>
+          <span>(</span><%= @item.price.to_s(:delimited, delimiter: ',') %><span>) 円</span>
+          <span class="add_tax"></span></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
