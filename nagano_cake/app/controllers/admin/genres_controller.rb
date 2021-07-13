@@ -10,13 +10,7 @@ class Admin::GenresController < ApplicationController
     redirect_to genre_path(@genre.id)
   end
 
-  def update
-  end
-
-  def destroy
-  end
-
-  def destroy_all
+  def edit
   end
 
   private

@@ -3,12 +3,18 @@ class Public::CartItemsController < ApplicationController
     cart_items = CartItem.where(customer_id: current_customer.id)
   end
 
+  def create
+    @cart_item = CartItem.new(cart_item_params)
+
+  end
+
+  def update
+  end
+
   def destroy
   end
 
-  def create
-    @cart_item = CartItem.new(cart_item_params)
-    
+  def destroy_all
   end
 
   private
