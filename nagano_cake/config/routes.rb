@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :customers
     resources :addresses
     resources :cart_items, only:[:create, :index, :destroy, :update]
-    delete '/cart_items', to: 'cart_items#delete_all'
+    delete '/cart_items', to: 'cart_items#destroy_all'
     resources :items
     resources :genres, only: [:index,:show]
     resources :orders
