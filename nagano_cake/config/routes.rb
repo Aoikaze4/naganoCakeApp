@@ -18,9 +18,10 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :customers
     resources :addresses
+    resources :cart_items, only:[:create, :index, :destroy, :update]
+    delete '/cart_items', to: 'cart_items#delete_all'
     resources :items
     resources :genres, only: [:index,:show]
-    get "/cart_items", :to=>"cart_items#index"
     resources :orders
     resources :order_items
   end

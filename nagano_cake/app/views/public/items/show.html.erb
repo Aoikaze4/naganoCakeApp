@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+    <% form_with 
     <div class="col-md-4">
       <%= attachment_image_tag @item, :image, size: "300x300", fallbaxk: "no_image.jpg" %>
     </div>
@@ -13,7 +14,7 @@
           <h3><span>￥</span><%= @item.price.to_s(:delimited, delimiter: ',') %><span class="add_tax"> (税込み)</span></h3>
         </div>
         <div class="row">
-          <p class="col-md-4">仮入れ　(個数選択)</p>
+          <%= 
           <%= link_to "カートに入れる", root_path, class: "btn btn-success col-md-3" %>
         </div>
       </div>
