@@ -8,6 +8,4 @@ class Public::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
   end
-
-  helper_method :add_tax_price
 end

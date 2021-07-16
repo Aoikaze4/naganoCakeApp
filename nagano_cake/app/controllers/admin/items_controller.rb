@@ -22,6 +22,4 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :genre_id, :introduction, :price, :is_active, :image)
   end
-
-  helper_method :add_tax_price
 end

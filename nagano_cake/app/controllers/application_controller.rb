@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
     tax = 1.10
     (@item.price * tax).round
   end
-
-
+  helper_method :add_tax_price
+  
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys:[:last_name,:first_name,:last_name_kana,:first_name_kana,
