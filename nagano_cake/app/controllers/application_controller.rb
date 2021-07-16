@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def add_tax_price
+    tax = 1.10
+    (@item.price * tax).round
+  end
+
 
   protected
     def configure_permitted_parameters
