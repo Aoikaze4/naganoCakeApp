@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :customers
     resources :admins
     resources :items
-    resources :genres, only:[:index, :edit, :create]
+    resources :genres, only:[:index, :edit, :create, :update]
     resources :orders
     resources :order_items
   end
