@@ -19,19 +19,19 @@
   </div>
   <% end %>
 
-  <% @genres.each do |f| %>
   <table class="table table-hover table-inverse col-md-5">
     <thead>
       <th>ジャンル</th>
       <th></th>
     </thead>
     <tbody>
+      <% @genres.each do |f| %>
       <tr>
         <td><%= f.name %></td>
         <td><%= link_to "編集する", edit_admin_genre_path(f.id), class: "btn btn-success" %></td>
       </tr>
+      <% end %>
     </tbody>
   </table>
-  <% end %>
 
 </div>
