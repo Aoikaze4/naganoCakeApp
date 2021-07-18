@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :customers
+    resources :customers, only:[:edit, :update, :leave, :update_leave]
+    get '/my_page', to: 'customers#show'
     resources :addresses
     resources :cart_items, only:[:create, :index, :destroy, :update]
     delete '/cart_items', to: 'cart_items#destroy_all'
