@@ -22,7 +22,7 @@
       <% @items.each do |f| %>
       <tr>
         <td><%= f.id %></td>
-        <td colspan="3"><u><%= link_to f.name, item_path(f.id), class: "text-body" %></u></td>
+        <td colspan="3"><u><%= link_to f.name, admin_item_path(f.id), class: "text-body" %></u></td>
         <td><%= f.price.to_s(:delimited, delimiter: ',') %></td>
         <td colspan="3"><%= f.genre.name %></td>
         <% if f.is_active == true %>

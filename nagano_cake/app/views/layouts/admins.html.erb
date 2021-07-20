@@ -10,6 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -37,51 +38,46 @@
               <li class-"nav-item">
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %>
               </li>
-              <!-- ここまでadminだった場合 -->
-              <!-- ここからcustomerだった場合 -->
-              <% elsif customer_signed_in? %>
-              <li class="nav-item">
-                <%= link_to "マイページ", my_page_path, class: "nav-link text-dark" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "商品一覧", items_path, class: "nav-link text-dark" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "カート", cart_items_path, class: "nav-link text-dark" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark" %>
-              </li>
-              <% else %>
-              <li class="nav-item">
-                <%= link_to "About", about_path, class: "nav-link text-dark" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "商品一覧", items_path, class: "nav-link text-dark" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "新規登録", new_customer_registration_path, class: "nav-link text-dark" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログイン", new_customer_session_path, class: "nav-link text-dark" %>
-              </li>
               <% end %>
             </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <%= yield %>
-    </main>
-    <footer>
-      <div class="container-fluid mt-3 bg-dark text-white">
-        <div class="row">
-          <div class="mx-auto my-5">
-            <p class="text-center mb-0">フッター用スペース</p>
-          </div>
+
+              <!-- for admin's session -->
+            <div class="container">
+              <div class="row">
+                <div class="col-md-2 mt-5 m-4 px-4 py-1 bg-secondary text-center">
+                  <h2>管理者ログイン</h2>
+                </div>
+              </div>
+              <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
+              <div class="field row justify-content-center my-2">
+                <%= f.label "メールアドレス", class: "col-md-2" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", style: "width: 75%", class: "col-md-5 form-control" %>
+              </div>
+
+              <div class="field row justify-content-center my-2">
+                <%= f.label "パスワード", class: "col-md-2" %>
+                <%= f.password_field :password, autocomplete: "current-password", style: "width: 75%", class: "col-md-5 form-control" %>
+              </div>
+
+              <div class="actions row justify-content-center">
+                <%= f.submit "ログイン", class: "btn btn-primary m-4", style: "width: 120px" %>
+              </div>
+              <% end %>
+            </div>
         </div>
       </div>
-    </footer>
-  </body>
-</html>
+    </nav>
+  </header>
+  <main>
+
+  </main>
+  <footer>
+    <div class="container-fluid mt-3 bg-dark text-white">
+      <div class="row">
+        <div class="mx-auto my-5">
+          <p class="text-center mb-0">フッター用スペース</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>

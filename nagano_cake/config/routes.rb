@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :admins, only: [:sign_in, :sing_out, :session], controllers: {sessions: 'admin/sessions'}
   devise_for :customers
-  devise_for :admins
 
   get 'top', to: 'homes#top'
   get 'about', to: 'homes#about'
   root to: 'homes#top'
 
   namespace :admin do
+    root to: 'home#index'
     resources :customers
     resources :admins
     resources :items
