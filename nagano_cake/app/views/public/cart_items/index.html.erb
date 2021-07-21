@@ -1,7 +1,10 @@
 <% if @cart_items == nil %>
-  <div>なんもないで</div>
+  なんもないで
 <% else %>
-  <% @cart_items.each do |f| %>
-    <%= f.customer_id %>
+  <%= @cart_items.each do |cart_item| %>\
+    <%= attachment_image_tag cart_item.item, :image, size: "150x150", fallback: "no_image.jpg" %>
+    <%= cart_item.item.name %>
+    <%= cart_item.item.price %>円
+    <%= cart_item.amount %>個
   <% end %>
 <% end %>

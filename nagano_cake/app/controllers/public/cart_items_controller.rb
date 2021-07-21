@@ -18,6 +18,12 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = CartItem.find_by(params[:id])
+    if @cart_item.save
+      redirect_to cart_items_path
+    else
+      render 'public/cart_items'
+    end
   end
 
   def destroy
