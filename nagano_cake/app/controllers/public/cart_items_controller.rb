@@ -18,6 +18,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
+    #動作チェックしてない（amount変更で使う）
     @cart_item = CartItem.find_by(params[:id])
     if @cart_item.save
       redirect_to cart_items_path
@@ -27,9 +28,22 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
+    cart_items = CartItem.where(customer_id: current_customer.id)
+    #別のアイテムが削除される（IDの指定がおかしい）
+    @cart_item = cart_items.find_by(params[:id])
+    if @cart_item.destroy
+      redirect_to cart_items_path
+    else
+      render root_path
+    end
   end
 
   def destroy_all
+    if CartItem.where(customer_id: current_customer.id).destroy_all
+      redirect_to cart_items_path
+    else
+      render root_path
+    end
   end
 
   private

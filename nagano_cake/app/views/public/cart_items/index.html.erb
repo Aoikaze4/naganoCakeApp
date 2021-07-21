@@ -1,10 +1,23 @@
 <% if @cart_items == nil %>
   なんもないで
 <% else %>
-  <%= @cart_items.each do |cart_item| %>\
-    <%= attachment_image_tag cart_item.item, :image, size: "150x150", fallback: "no_image.jpg" %>
-    <%= cart_item.item.name %>
-    <%= cart_item.item.price %>円
-    <%= cart_item.amount %>個
+  <%= link_to cart_items_path, action: 'destroy_all', method: :delete, data: {confirm: "カートから全ての商品を削除しますか？"} do %>
+    <button class = "btn btn-danger">カートを空にする</button>
   <% end %>
+  <div>
+  <% @cart_items.each do |cart_item| %>
+    <div>
+      <%= attachment_image_tag cart_item.item, :image, size: "100x100", fallback: "no_image.jpg" %>
+      <%= name = cart_item.item.name %>
+      1個当たり<%= price = cart_item.item.price %>円
+      <%= amount = cart_item.amount %>個
+      小計<%= price * amount %>円
+      <%= link_to cart_item_path(cart_item.id), method: :delete, data: {confirm: "【"+ name + "】" + " を カートから削除しますか？"} do %>
+        <button class = "btn btn-danger">
+          削除
+        </button>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
 <% end %>
