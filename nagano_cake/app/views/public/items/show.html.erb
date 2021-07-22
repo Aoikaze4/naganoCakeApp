@@ -10,7 +10,7 @@
           <p><%= @item.introduction %></p>
         </div>
         <div class="col-md-12">
-          <h3><span>￥</span><%= add_tax_price.to_s(:delimited, delimiter: ',') %><span class="add_tax"> (税込み)</span></h3>
+          <h3><span>￥</span><%= add_tax_price(@item.price).to_s(:delimited, delimiter: ',') %><span class="add_tax"> (税込み)</span></h3>
         </div>
         <%= form_with model: CartItem.new, url: cart_items_path, local:true do |f| %>
         <div class="row">

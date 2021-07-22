@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   # end
   # ↑ログイン後遷移先をいじりたい場合。管理者トップページとして後程必要
 
-  def add_tax_price
+  def add_tax_price(price)
     tax = 1.10
-    (@item.price * tax).round
+    (price * tax).round
   end
   helper_method :add_tax_price
 

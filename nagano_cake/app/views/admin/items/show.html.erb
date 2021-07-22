@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-12">
           税込み価格(税抜き価格)
-          <%= add_tax_price.to_s(:delimited, delimiter: ',') %>
+          <%= add_tax_price(@item.price).to_s(:delimited, delimiter: ',') %>
           <span>(</span><%= @item.price.to_s(:delimited, delimiter: ',') %><span>) 円</span>
           <span class="add_tax"></span></h3>
         </div>
