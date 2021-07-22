@@ -12,7 +12,7 @@
       1個当たり<%= price = cart_item.item.price %>円
       <%= amount = cart_item.amount %>個
       小計<%= price * amount %>円
-      <%= link_to cart_item_path(cart_item.id), method: :delete, data: {confirm: "【"+ name + "】" + " を カートから削除しますか？"} do %>
+      <%= link_to cart_item_path(cart_item.item_id), method: :delete, data: {confirm: "【"+ name + "】" + " を カートから削除しますか？"} do %>
         <button class = "btn btn-danger">
           削除
         </button>

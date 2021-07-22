@@ -29,9 +29,8 @@ class Public::CartItemsController < ApplicationController
 
   def destroy
     cart_items = CartItem.where(customer_id: current_customer.id)
-    #別のアイテムが削除される（IDの指定がおかしい）
-    @cart_item = cart_items.find_by(params[:id])
-    if @cart_item.destroy
+    cart_item = cart_items.find_by(item_id: params[:id])
+    if cart_item.destroy
       redirect_to cart_items_path
     else
       render root_path
