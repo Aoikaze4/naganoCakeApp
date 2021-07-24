@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-secondary text-center">
+      <h2>注文情報入力</h2>
+    </div>
+  </div>
+
+<%= form_with model: @order, local: true do |f| %>
+  <div>
+    <h3>支払い方法</h3>
+  </div>
+  <%= f.radio_button :payment_method, :credit_card, checked: true %>
+  <%= f.label :credit_card %>
+  <%= f.radio_button :payment_method, :bank %>
+  <%= f.label :bank %>
+  <div>
+    <h3>お届け先</h3>
+  </div>
+<% end %>
+</div>

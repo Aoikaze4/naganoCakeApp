@@ -41,4 +41,12 @@
   <div>
     合計金額 <%= page_total_price.to_s(:delimited, delimiter: ',') %>円
   </div>
+
+  <div>
+    <%= link_to new_order_path do %>
+      <button class= "btn btn-success">
+        情報入力に進む
+      </button>
+    <% end %>
+  </div>
 <% end %>
