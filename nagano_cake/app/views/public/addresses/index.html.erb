@@ -37,8 +37,8 @@
           </button>
         <% end %>
         <%= link_to address_path(f.customer_id), method: :delete, data: {confirm: "この住所を削除しますか？"} do %>
-          <button class="btn btn-success">
-            編集する
+          <button class="btn btn-danger">
+            削除する
           </button>
         <% end %>
       </div>
