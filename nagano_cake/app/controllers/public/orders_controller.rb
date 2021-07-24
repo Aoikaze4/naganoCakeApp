@@ -1,5 +1,12 @@
 class Public::OrdersController < ApplicationController
   def new
+    @customer = Customer.find(current_customer.id)
+    @customer_address = "〒" + @customer.postal_code + @customer.address
+    @customer_fullname = @customer.last_name + @customer.first_name
+
+    @address = Address.new
+
+    @addresses = Address.where(customer_id: current_customer.id)
   end
 
   private

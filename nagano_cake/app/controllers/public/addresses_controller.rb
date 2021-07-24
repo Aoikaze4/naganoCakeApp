@@ -14,6 +14,16 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
+    @address = Address.find(params[:id])
+  end
+
+  def update
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      redirect_to addresses_path
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
@@ -28,7 +38,7 @@ class Public::AddressesController < ApplicationController
 
   private
   def address_params
-    params.permit(:name, :postal_code, :address).merge(customer_id: current_customer.id)
+    params.require(:address).permit(:name, :postal_code, :address).merge(customer_id: current_customer.id)
   end
-  #モデル名＝カラム名であるためrequireを抜いてみる
+  #モデル名＝カラム名であるためか、createが発火しない→requireを抜いてみる→updateが機能しなくなる
 end
