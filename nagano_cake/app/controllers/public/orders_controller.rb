@@ -3,9 +3,10 @@ class Public::OrdersController < ApplicationController
     @customer = Customer.find(current_customer.id)
     @customer_address = "〒" + @customer.postal_code + @customer.address
     @customer_fullname = @customer.last_name + @customer.first_name
-
+    
+    @order = Order.new
     @address = Address.new
-
+    
     @addresses = Address.where(customer_id: current_customer.id)
   end
 
