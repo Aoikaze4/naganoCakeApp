@@ -1,9 +1,6 @@
 class Public::AddressesController < ApplicationController
   def index
     @addresses = Address.where(customer_id: current_customer.id)
-  end
-
-  def new
     @address = Address.new
   end
 
@@ -38,7 +35,7 @@ class Public::AddressesController < ApplicationController
 
   private
   def address_params
-    params.require(:address).permit(:name, :postal_code, :address).merge(customer_id: current_customer.id)
+    params.require(:address).permit(:name, :postal_code, :address_name).merge(customer_id: current_customer.id)
   end
   #モデル名＝カラム名であるためか、createが発火しない→requireを抜いてみる→updateが機能しなくなる
 end

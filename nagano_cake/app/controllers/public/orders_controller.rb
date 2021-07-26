@@ -9,6 +9,11 @@ class Public::OrdersController < ApplicationController
     @addresses = Address.where(customer_id: current_customer.id)
   end
 
+  def confirm
+    @order = Address.new(order_params)
+    render 'public/orders/confirm'
+  end
+
   private
   def order_params
     params.require(:order).permit(:postal_code, :address, :name, :order_status, :payment_method)

@@ -13,7 +13,7 @@
     </div>
     <div>
       住所
-      <%= f.text_field :address, class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %>
+      <%= f.text_field :address_name, class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %>
     </div>
     <div>
       宛名
@@ -29,7 +29,7 @@
     <% @addresses.each do |f| %>
       <div>
         <%= f.postal_code %>
-        <%= f.address %>
+        <%= f.address_name %>
         <%= f.name %>
         <%= link_to edit_address_path(f.id) do %>
           <button class="btn btn-success">
