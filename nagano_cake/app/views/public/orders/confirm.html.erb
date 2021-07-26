@@ -1,3 +1,58 @@
-<%= @order.name %>
-<%= @order.postal_code %>
-<%= @order.address %>
+<% total_price = 0 %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-secondary text-center">
+      <h2>注文情報確認</h2>
+    </div>
+  </div>
+
+　<div>
+　  商品名　単価(税込)　数量　小計
+　</div>
+  <% @cart_items.each do |f| %>
+    <div>
+      <%= f.item.name %>
+      <% price = add_tax_price(f.item.price) %>
+      <% price.to_s(:delimited, delimiter: ',') %>
+      <%= amount = f.amount %>個
+      小計<% subtotal_price = (add_tax_price(f.item.price) * f.amount.to_i) %>
+      <%= subtotal_price.to_s(:delimited, delimiter: ',') %>
+      <% total_price += subtotal_price.to_i %>
+    </div>
+  <% end %>
+  <% @total_price = total_price %>
+  <!-- コントローラーで使う用 -->
+
+  <div>
+    送料　商品合計　請求金額
+  </div>
+
+  <div>
+    <%= @order.postage %>円
+    <%= total_price.to_s(:delimited, delimiter: ',') %>円
+    <%= (total_price + @order.postage).to_s(:delimited, delimiter: ',') %>円
+  </div>
+
+  <div>
+    支払方法
+    <%= @order.payment_method %>
+    <!-- order/new.html.erbも同様に payment_methodの日本語化が必要 i18n -->
+  </div>
+
+  <div>
+    お届け先
+    〒<%= @order.postal_code + @order.address + @order.name %>
+  </div>
+
+  <div>
+    <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+      <%= f.hidden_field :postal_code %>
+      <%= f.hidden_field :address %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :order_status %>
+      <%= f.hidden_field :total_payment, value: total_price %>
+      <%= f.hidden_field :postage, value: @order.postage %>
+      <%= f.hidden_field :payment_method %>
+      <%= f.submit "注文を確定する", class: "btn btn-success" %>
+    <% end %>
+  </div>

@@ -18,7 +18,7 @@
     <h3>お届け先</h3>
   </div>
   <div>
-    <%= radio_button_tag :select_address, 1 %>
+    <%= radio_button_tag :select_address, 1, checked: true %>
     <%= label_tag "ご自身の住所" %>
     <div>〒<%= current_customer.postal_code + current_customer.address %></div>
     <div><%= current_customer.last_name + current_customer.first_name %></div>
