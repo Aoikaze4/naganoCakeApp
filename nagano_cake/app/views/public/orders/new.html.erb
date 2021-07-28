@@ -11,9 +11,9 @@
   </div>
   <%= f.hidden_field :customer_id, value: current_customer.id %>
   <%= f.radio_button :payment_method, :credit_card, checked: true %>
-  <%= f.label :credit_card %>
+  <%= f.label :payment_method, "クレジットカード" %>
   <%= f.radio_button :payment_method, :bank %>
-  <%= f.label :bank %>
+  <%= f.label :bank, "銀行振込" %>
   <div>
     <h3>お届け先</h3>
   </div>

@@ -3,17 +3,6 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       ymd: "%Y/%m/%d"
-  enums:
-    orders:
-      payment_method:
-        credit_card: "クレジットカード"
-        bank: "銀行振込"
-      order_status:
-        wait: "入金待ち"
-        paid: "入金確認"
-        making: "製作中"
-        prepaer: "発送準備中"
-        send: "発送済み"
   activerecord:
     errors:
       messages:
