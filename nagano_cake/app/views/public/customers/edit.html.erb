@@ -1,1 +1,36 @@
-<h1>edittttt</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-secondary text-center">
+      <h2>会員情報編集</h2>
+    </div>
+  </div>
+
+  <%= form_with model: @customer, local: true do |f| %>
+  <div>
+    氏名
+    <%= f.text_field :last_name, class: "form-control", value: @customer.last_name %>
+    <%= f.text_field :first_name, class: "form-control", value: @customer.first_name %>
+  </div>
+  <div>
+    フリガナ
+    <%= f.text_field :last_name_kana, class: "form-control", value: @customer.last_name_kana %>
+    <%= f.text_field :first_name_kana, class: "form-control", value: @customer.first_name_kana %>
+  </div>
+  <div>
+    郵便番号 <%= f.text_field :postal_code, class: "form-control", value: @customer.postal_code %>
+  </div>
+  <div>
+    住所 <%= f.text_field :address, class: "form-control", value: @customer.address %>
+  </div>
+  <div>
+    電話番号 <%= f.text_field :telephone_number, class: "form-control", value: @customer.telephone_number %>
+  </div>
+  <div>
+    メールアドレス <%= f.email_field :email, class: "form-control", value: @customer.email %>
+  </div>
+
+  <div>
+    <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+  </div>
+  <% end %>
+</div>

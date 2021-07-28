@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @order = Order.new
     @address = Address.new
@@ -21,7 +23,6 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = Address.find(params[:order][:address].to_i).postal_code
       @order.address = Address.find(params[:order][:address].to_i).address_name
     elsif params[:select_address] == "3"
-      #validationを実装したい（3が選ばれた時のみにしないと空白のときに面倒になるので、コントローラーで処理？）
       @order.name = params[:name]
       @order.postal_code = params[:postal_code]
       @order.address = params[:address_name]
@@ -49,6 +50,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def thanks
+  end
+
+  def index
+    @orders = Order.where(customer_id: current_customer.id)
+  end
+
+  def show
+    @order = Order.find(params[:id])
   end
 
   private
