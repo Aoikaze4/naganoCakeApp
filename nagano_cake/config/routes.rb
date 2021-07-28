@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins, only: [:sign_in, :sing_out, :session], controllers: {sessions: 'admin/sessions'}
-  devise_for :customers
+  devise_for :customers, controllers: {sessions: 'public/customers/sessions'}
 
   get 'top', to: 'homes#top'
   get 'about', to: 'homes#about'
@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :customers, only:[:edit, :update, :leave, :update_leave]
+    resources :customers, only:[:edit, :update]
+    get '/customer/leave', to: 'customers#leave'
+    post '/customer/update_leave', to: 'customers#update_leave'
     get '/my_page', to: 'customers#my_page'
     resources :addresses
     resources :cart_items, only:[:create, :index, :destroy, :update]
