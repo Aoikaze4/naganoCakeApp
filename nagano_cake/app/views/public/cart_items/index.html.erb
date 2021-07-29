@@ -1,7 +1,13 @@
 <% page_total_price = 0 %>
 
-<% if @cart_items == nil %>
-  なんもないで
+<% if @cart_items == nil or @cart_items == [] %>
+  <div>
+    <%= link_to items_path do %>
+      <button class = "btn btn-primary">
+        買い物を続ける
+      </button>
+    <% end %>
+  </div>
 <% else %>
   <%= link_to cart_items_path, action: 'destroy_all', method: :delete, data: {confirm: "カートから全ての商品を削除しますか？"} do %>
     <button class = "btn btn-danger">カートを空にする</button>

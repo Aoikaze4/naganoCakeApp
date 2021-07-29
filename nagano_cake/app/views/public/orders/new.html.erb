@@ -26,7 +26,7 @@
   <div>
     <%= radio_button_tag :select_address, 2 %>
     <%= label_tag "登録済み住所から選択" %>
-    <%= f.collection_select :address, @addresses, :id, :view_address_and_name %>
+    <%= f.collection_select :address, @addresses, :id, :view_address_and_name, { prompt: "選択してください" } %>
   </div>
   <div>
     <%= radio_button_tag :select_address, 3 %>
