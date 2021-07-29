@@ -3,5 +3,6 @@ class Admin::HomeController < Admin::AdminsController
 
   def index
     @orders = Order.all.reverse
+    render 'admin/orders/index'
   end
 end
