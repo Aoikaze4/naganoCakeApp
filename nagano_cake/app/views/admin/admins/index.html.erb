@@ -1,1 +1,34 @@
-admin index.html.erb
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-secondary text-center">
+      <h2>注文履歴一覧</h2>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+        <th>注文ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% unless @orders == nil or @orders == [] %>
+        <% @orders.each do |f| %>
+        <tr>
+          <td><%= link_to (l f.created_at, format: :default), admin_order_path(f.id) %></td>
+          <td><%= f.name %></td>
+
+          <% amount = 0 %>
+          <% f.order_items.each do |order_item| %>
+            <% amount += order_item.amount %>
+          <% end %>
+
+          <td><%= amount %></td>
+          <td><%= f.order_status %></td>
+        </tr>
+        <% end %>
+      <% end %>
+  </table>

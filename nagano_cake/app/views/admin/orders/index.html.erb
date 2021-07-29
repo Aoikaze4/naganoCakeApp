@@ -18,7 +18,7 @@
       <% unless @orders == nil or @orders == [] %>
         <% @orders.each do |f| %>
         <tr>
-          <td><%= l f.created_at, format: :default %></td>
+          <td><%= link_to (l f.created_at, format: :default), admin_order_path(f.id) %></td>
           <td><%= f.name %></td>
 
           <% amount = 0 %>

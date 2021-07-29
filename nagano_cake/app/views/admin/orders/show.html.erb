@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-secondary text-center">
+      <h2>注文履歴詳細</h2>
+    </div>
+  </div>
+
+  <%= form_with model: @order, url: admin_order_path(@order.id), local: true do |f| %>
+    <div>
+      購入者  <%= link_to (@order.customer.last_name + " " + @order.customer.first_name), admin_customer_path(@order.id) %>
+    </div>
+    <div>
+      注文日　<%= l @order.created_at, format: :ymd %>
+    </div>
+    <div>
+      配送先  <%= "〒" + @order.postal_code + " " + @order.address + @order.name %>
+    </div>
+    <div>
+      注文ステータス <%= f.select :order_status, Order.order_statuses.keys.to_a %> <%= f.submit "更新", class: "btn btn-success" %>
+    </div>
+  <% end %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込み)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>制作ステータス</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.order_items.each do |order_item| %>
+        <tr>
+            <td><%= order_item.item.name %></td>
+            <% price = order_item.price_including_tax %>
+            <td><%= price.to_s(:delimited, delimiter: ',') %></td>
+            <td><%= amount = order_item.amount %></td>
+            <% subtotal_price = price * amount %>
+            <td><%= subtotal_price.to_s(:delimited, delimiter: ',') %></td>
+            <%= form_with model: order_item, url: admin_order_item_path(order_item.id), local: true do |f| %>
+            <!-- フォームを<table>の外に持っていかないと発火しないよ -->
+              <td><%= f.select :make_status, OrderItem.make_statuses.keys.to_a %></td>
+              <td><%= f.submit "更新", class: "btn btn-success" %></td>
+            <% end %>
+          <% end %>
+        </tr>
+    </tbody>
+  </table>
