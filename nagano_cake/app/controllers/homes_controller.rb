@@ -1,6 +1,5 @@
 class HomesController < ApplicationController
   def top
-    num = 0
     @items = Item.last(4).reverse
   end
 

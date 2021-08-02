@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <table class="table table-hover table-inverse col-md-12">
+  <table class="table table-hover table-inverse col-md-8 mx-auto">
     <thead>
       <th>会員ID</th>
       <th colspan="3"><u>氏名</u></th>
@@ -27,3 +27,7 @@
       <% end %>
     </tbody>
   </table>
+
+  <div class="mt-5 mb-4">
+    <%= paginate @customers %>
+  </div>
