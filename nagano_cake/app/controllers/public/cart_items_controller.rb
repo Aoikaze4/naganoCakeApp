@@ -20,10 +20,9 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    #動作チェックしてない（amount変更で使う）
-    @cart_item = CartItem.find_by(params[:id])
-    if @cart_item.save
-      redirect_to cart_items_path
+    cart_item = CartItem.find(params[:id])
+    if cart_item.update(cart_item_params)
+      redirect_to cart_items_path, notice: '個数を変更しました。'
     else
       render 'public/cart_items'
     end
@@ -31,7 +30,7 @@ class Public::CartItemsController < ApplicationController
 
   def destroy
     cart_items = CartItem.where(customer_id: current_customer.id)
-    cart_item = cart_items.find_by(item_id: params[:id])
+    cart_item = cart_items.find_by(id: params[:id])
     if cart_item.destroy
       redirect_to cart_items_path
     else
