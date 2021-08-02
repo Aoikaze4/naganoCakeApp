@@ -30,7 +30,7 @@ class Public::CartItemsController < ApplicationController
 
   def destroy
     cart_items = CartItem.where(customer_id: current_customer.id)
-    cart_item = cart_items.find_by(id: params[:id])
+    cart_item = cart_items.find(params[:id])
     if cart_item.destroy
       redirect_to cart_items_path
     else

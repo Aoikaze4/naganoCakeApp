@@ -1,25 +1,39 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row">
     <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-secondary text-center">
       <h2>配送先編集</h2>
     </div>
   </div>
 
-
   <%= form_with model: @address, local: true do |f| %>
-    <div>
-    <%= f.label "郵便番号(ハイフンなし)" %>
-    <%= f.text_field :postal_code, value: @address.postal_code %>
-    </div>
-    <div>
-    <%= f.label "住所" %>
-    <%= f.text_field :address_name, value: @address.address_name %>
-    </div>
-    <div>
-    <%= f.label "宛名" %>
-    <%= f.text_field :name, value: @address.name %>
+    <div class="row my-1">
+      <div class="col-md-3">
+        <%= f.label "郵便番号(ハイフンなし)" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :postal_code, value: @address.postal_code, class: "form-control" %>
+      </div>
     </div>
 
-    <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+    <div class="row my-1">
+      <div class="col-md-3">
+        <%= f.label "住所" %>
+      </div>
+      <div class="col-md-6">
+        <%= f.text_field :address_name, value: @address.address_name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row my-1">
+      <div class="col-md-3">
+        <%= f.label "宛名" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :name, value: @address.name, class: "form-control" %>
+      </div>
+      <div class="col-md-3 offset-md-3 text-right">
+        <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+      </div>
+    </div>
   <% end %>
 </div>

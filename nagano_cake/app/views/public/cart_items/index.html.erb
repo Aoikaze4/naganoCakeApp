@@ -19,12 +19,11 @@
   </div>
 <% else %>
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-between">
       <div class="col-md-4 mt-5 m-4 px-4 py-1 bg-secondary text-center">
         <h2>ショッピングカート</h2>
       </div>
-      <div class="col-md-3"></div>
-      <div class="col-md-3 mt-5 m-4 px-4 py-1">
+      <div class="col-md-3 offset-md-4 mt-5 m-4 px-4 py-1 text-right">
         <%= link_to cart_items_path, action: 'destroy_all', method: :delete, data: {confirm: "カートから全ての商品を削除しますか？"} do %>
           <button class = "btn btn-danger btn-sm">カートを空にする</button>
         <% end %>
@@ -36,18 +35,18 @@
         <div>
           <table class="table table-bordered">
             <thead>
-              <th class="table-active col-md-5">商品名</th>
-              <th class="table-active col-md-1">単価(税込)</th>
-              <th class="table-active col-md-1">数量</th>
-              <th class="table-active col-md-1">小計</th>
-              <th class="table-active col-md-1"></th>
+              <th class="table-active col-md-4">商品名</th>
+              <th class="table-active col-md-2">単価(税込)</th>
+              <th class="table-active col-md-2">数量</th>
+              <th class="table-active col-md-2">小計</th>
+              <th class="table-active col-md-2"></th>
             </thead>
             <tbody>
             <% @cart_items.each do |cart_item| %>
               <tr>
                 <td class="align-middle">
                   <%= attachment_image_tag cart_item.item, :image, size: "80x80", fallback: "no_image.jpg" %>
-                  <%= name = cart_item.item.name %>
+                  <strong><%= name = cart_item.item.name %></strong>
                 </td>
                 <td class="align-middle">
                   <% price = cart_item.item.price %>
@@ -56,7 +55,7 @@
                 <td class="align-middle">
                   <% amount = cart_item.amount %>
                   <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
-                    <div class="row">
+                    <div class="row mx-auto">
                       <%= f.number_field :amount, min: 1, class: 'form-control col-6', required: true %>
                       <%= f.submit "変更", class: "btn btn-success btn-sm col-4" %>
                     </div>
@@ -69,7 +68,7 @@
                 </td>
                 <td class="text-center align-middle">
                 <%= link_to cart_item_path(cart_item), method: :delete, data: {confirm: "【"+ name + "】" + " を カートから削除しますか？"} do %>
-                  <button class = "btn btn-danger">
+                  <button class = "btn btn-danger btn-sm">
                     削除する
                   </button>
                 <% end %>
@@ -83,24 +82,34 @@
       </div>
     </div>
   <div>
-    <%= link_to items_path do %>
-      <button class = "btn btn-primary">
-        買い物を続ける
-      </button>
-    <% end %>
+
+  <div class="row justify-content-between mt-4">
+    <div class="col-md-4 ml-5">
+      <%= link_to items_path do %>
+        <button class = "btn btn-primary">
+          買い物を続ける
+        </button>
+      <% end %>
+    </div>
+
+    <div class="col-md-3">
+      <table class="table table-bordered">
+        <tr>
+         <th class="table-active">合計金額</th>
+         <td><%= page_total_price.to_s(:delimited, delimiter: ',') %></td>
+        </tr>
+      </table>
+    </div>
   </div>
 
-  <div>
-    合計金額 <%= page_total_price.to_s(:delimited, delimiter: ',') %>円
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <%= link_to new_order_path do %>
+        <button class= "btn btn-success btn-lg">
+          情報入力に進む
+        </button>
+      <% end %>
+    </div>
   </div>
-
-  <div>
-    <%= link_to new_order_path do %>
-      <button class= "btn btn-success">
-        情報入力に進む
-      </button>
-    <% end %>
-  </div>
+</div>
 <% end %>
-</div>
-</div>
