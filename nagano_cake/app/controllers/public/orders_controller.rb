@@ -56,9 +56,10 @@ class Public::OrdersController < ApplicationController
     @orders = Order.where(customer_id: current_customer.id)
   end
 
-  #def show
-   # @order = Order.find(params[:id])
-  #end
+  def show
+    @order = Order.find(params[:id])
+    @order_items = OrderItem.where(order_id: @order.id)
+  end
 
   private
   def order_params

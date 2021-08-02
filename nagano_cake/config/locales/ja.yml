@@ -3,6 +3,11 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       ymd: "%Y/%m/%d"
+  enums:
+    order:
+      payment_method:
+        credit_card: 'クレジットカード'
+        bank: '銀行振込'
   activerecord:
     errors:
       messages:
