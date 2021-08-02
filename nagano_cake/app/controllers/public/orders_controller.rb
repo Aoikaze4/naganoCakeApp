@@ -34,7 +34,6 @@ class Public::OrdersController < ApplicationController
     @order.save
     redirect_to orders_thanks_path
 
-    #order_itemにここで格納するべきだと思う
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
       OrderItem.create(

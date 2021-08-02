@@ -26,9 +26,9 @@ Rails.application.routes.draw do
     delete '/cart_items', to: 'cart_items#destroy_all'
     resources :items
     resources :genres, only: [:index,:show]
+    get '/orders/thanks', to: 'orders#thanks'
     resources :orders, only: [:new, :create, :index, :show]
     post '/orders/new', to: 'orders#confirm'
-    get '/orders/thanks', to: 'orders#thanks'
     resources :order_items
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

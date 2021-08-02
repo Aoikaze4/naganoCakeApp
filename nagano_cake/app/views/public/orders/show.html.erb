@@ -66,11 +66,13 @@
         </thead>
         <tbody>
           <% @order_items.each do |f| %>
+          <tr>
             <td><%= f.item.name %></td>
             <% price = f.price_including_tax %>
             <td><%= price.to_s(:delimited, delimiter: ',') %></td>
             <td><%= amount = f.amount %></td>
             <td><%= (price * amount).to_s(:delimited, delimiter: ',') %></td>
+          </tr>
           <% end %>
         </tbody>
       </table>
