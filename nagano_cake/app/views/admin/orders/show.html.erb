@@ -60,24 +60,32 @@
             <th class="table-active">単価(税込み)</th>
             <th class="table-active">数量</th>
             <th class="table-active">小計</th>
-            <th class="table-active">制作ステータス</th>
-            <th class="table-active"></th>
+            <th class="table-active">製作ステータス</th>
           </tr>
         </thead>
         <tbody>
           <% @order.order_items.each do |order_item| %>
             <tr>
-                <td><%= order_item.item.name %></td>
+                <td>
+                  <%= order_item.item.name %>
+                </td>
                 <% price = order_item.price_including_tax %>
-                <td><%= price.to_s(:delimited, delimiter: ',') %></td>
-                <td><%= amount = order_item.amount %></td>
+                <td>
+                  <%= price.to_s(:delimited, delimiter: ',') %>
+                </td>
+                <td>
+                  <%= amount = order_item.amount %>
+                </td>
                 <% subtotal_price = price * amount %>
                 <% total_price += subtotal_price %>
-                <td><%= subtotal_price.to_s(:delimited, delimiter: ',') %></td>
-                <%= form_with model: order_item, url: admin_order_item_path(order_item.id), local: true do |f| %>
-                <!-- フォームを<table>の外に持っていかないと発火しないよ -->
-                  <td><%= f.select :make_status, OrderItem.make_statuses.keys.to_a, {}, class: "form-control" %></td>
-                  <td><%= f.submit "更新", class: "btn btn-success" %></td>
+                <td>
+                  <%= subtotal_price.to_s(:delimited, delimiter: ',') %>
+                </td>
+                <td class="form-inline">
+                  <%= form_with model: order_item, url: admin_order_item_path(order_item.id), local: true do |f| %>
+                  <%= f.select :make_status, OrderItem.make_statuses.keys.to_a, {}, class: "form-control" %>
+                  <%= f.submit "更新", class: "btn btn-success ml-4" %>
+                </td>
                 <% end %>
               <% end %>
             </tr>
