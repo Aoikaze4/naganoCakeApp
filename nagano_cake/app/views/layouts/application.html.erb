@@ -16,11 +16,7 @@
         <div class="container">
           <%= link_to "ながのCAKE", root_path, class: "navbar-brand" %>
 
-          <% if customer_signed_in? %>
-            <div class="text-right">
-              ようこそ、<%= current_customer.last_name %>さん！
-            </div>
-          <% end %>
+
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,6 +43,11 @@
               <!-- ここまでadminだった場合 -->
               <!-- ここからcustomerだった場合 -->
               <% elsif customer_signed_in? %>
+                <% if customer_signed_in? %>
+                  <li class="nav-item navbar-text">
+                    ようこそ、<%= current_customer.last_name %>さん！
+                  </li>
+                <% end %>
               <li class="nav-item">
                 <%= link_to "マイページ", my_page_path, class: "nav-link text-dark" %>
               </li>

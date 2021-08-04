@@ -1,5 +1,4 @@
 class Public::ItemsController < ApplicationController
-  before_action :authenticate_customer!
   before_action :active_item, only: [:show]
 
   def active_item

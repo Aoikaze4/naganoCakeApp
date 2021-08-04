@@ -45,14 +45,13 @@ class Public::OrdersController < ApplicationController
     end
 
     @cart_items.destroy_all
-
   end
 
   def thanks
   end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id)
+    @orders = Order.where(customer_id: current_customer.id).reverse
   end
 
   def show
