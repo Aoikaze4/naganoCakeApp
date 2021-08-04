@@ -1,6 +1,7 @@
 class HomesController < ApplicationController
   def top
-    @items = Item.last(4).reverse
+    active_items = Item.where(is_active: true)
+    @items = active_items.last(4).reverse
   end
 
   def about

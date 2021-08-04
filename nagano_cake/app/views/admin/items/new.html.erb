@@ -4,36 +4,37 @@
       <h2>商品新規登録</h2>
     </div>
   </div>
+
   <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
-  <div class="form-group row text-center">
-    <%= f.label "商品画像", class: "col-md-3" %>
+  <div class="form-group row">
+    <%= f.label "商品画像", class: "col-md-3 offset-md-2" %>
     <%= f.attachment_field :image, class: "form-control-file col-md-5" %>
   </div>
-  <div class="form-group row text-center">
-    <%= f.label "商品名", class: "col-md-3" %>
+  <div class="form-group row">
+    <%= f.label "商品名", class: "col-md-3 offset-md-2" %>
     <%= f.text_field :name, class: "form-control col-md-5", placeholder: "商品名" %>
   </div>
-  <div class="form-group row text-center">
-    <%= f.label "商品説明", class: "col-md-3" %>
+  <div class="form-group row">
+    <%= f.label "商品説明", class: "col-md-3 offset-md-2" %>
     <%= f.text_area :introduction, class: "form-control col-md-5", placeholder: "ここに説明文を記述します" %>
   </div>
-  <div class="form-group row text-center">
-    <%= f.label "ジャンル", class: "col-md-3" %>
-    <%= f.collection_select :genre_id, @genres.all, :id, :name, include_blank: "-- 選択してください --" %>
+  <div class="form-group row">
+    <%= f.label "ジャンル", class: "col-md-3 offset-md-2" %>
+    <%= f.collection_select :genre_id, @genres.all, :id, :name, {prompt: "-- 選択してください --"}, class: "form-control", style: "width:42%" %>
   </div>
-  <div class="form-group row text-center">
-    <%= f.label "税抜価格", class: "col-md-3" %>
-    <%= f.text_field :price, class: "form-control col-md-5", placeholder: "1000" %><span class="m-1">円</span>
+  <div class="form-group row">
+    <%= f.label "税抜価格", class: "col-md-3 offset-md-2" %>
+    <%= f.text_field :price, class: "form-control col-md-5 mr-1", placeholder: "1000" %><span class="m-1">円</span>
   </div>
-  <div class="form-group row d-flex align-items-center text-center">
-    <%= f.label "販売ステータス", class: "col-md-3" %>
+  <div class="form-group row d-flex align-items-center">
+    <%= f.label "販売ステータス", class: "col-md-3 offset-md-2" %>
     <%= f.radio_button :is_active, true, class: "mb-2 mr-1", checked: true %>
     <%= f.label :is_active, "販売中", value: true, class: "mr-3" %>
     <%= f.radio_button :is_active, false, class: "mb-2 mr-1" %>
     <%= f.label :is_active, "販売停止中", value: false %>
   </div>
 
-  <div class="form-group text-center">
+  <div class="form-group text-center btn-lg">
     <%= f.submit "新規登録", class: "btn btn-success mx-3 my-2", style: "width: 120px; height: 50px" %>
   </div>
   <% end %>
