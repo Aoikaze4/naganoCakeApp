@@ -5,4 +5,8 @@ class Item < ApplicationRecord
   belongs_to :genre
 
   attachment :image
+
+  validates :name, :introduction, :genre_id, :price, presence: true
+  validates :price, numericality: {only_integer: true, greater_than: 0}
+
 end

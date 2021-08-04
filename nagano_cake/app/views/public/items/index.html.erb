@@ -10,7 +10,7 @@
     <div class="col-3 mb-3">
       <%= attachment_image_tag f, :image, size: "120x120", fallback: "no_image.jpg" %><br />
       <%= link_to f.name, item_path(f.id) %><br>
-      <span>￥</span><%= f.price.to_s(:delimited, delimiter: ',') %><br>
+      <span>￥</span><%= add_tax_price(f.price).to_s(:delimited, delimiter: ',') %><br>
     </div>
     <% end %>
   </div>

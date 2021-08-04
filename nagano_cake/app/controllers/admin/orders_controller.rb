@@ -19,6 +19,12 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
+  def customer_orders
+    orders = Order.where(customer_id: params[:id])
+    @orders = orders.page(params[:page]).per(10).reverse_order
+    render "admin/orders/index"
+  end
+
   private
   def order_params
     params.require(:order).permit(:order_status)

@@ -4,16 +4,17 @@ Rails.application.routes.draw do
 
   get 'top', to: 'homes#top'
   get 'about', to: 'homes#about'
+  get '/admin/customers/:id/orders', to: 'admin/orders#customer_orders', as: :customer_order
   root to: 'homes#top'
 
   namespace :admin do
     root to: 'home#index'
-    resources :customers
+    resources :customers, only:[:index,:show,:edit,:update]
     resources :admins
-    resources :items
+    resources :items, only:[:new,:create,:index,:show,:edit,:update]
     resources :genres, only:[:index, :edit, :create, :update]
-    resources :orders
-    resources :order_items
+    resources :orders, only:[:update,:index,:show]
+    resources :order_items, only:[:update]
   end
 
   scope module: :public do
