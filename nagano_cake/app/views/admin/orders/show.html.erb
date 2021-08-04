@@ -1,3 +1,5 @@
+<% total_price = 0 %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-3 mt-5 m-4 px-4 py-1 bg-secondary text-center">
@@ -6,46 +8,109 @@
   </div>
 
   <%= form_with model: @order, url: admin_order_path(@order.id), local: true do |f| %>
-    <div>
-      購入者  <%= link_to (@order.customer.last_name + " " + @order.customer.first_name), admin_customer_path(@order.id) %>
+    <div class="row my-3">
+      <div class="col-md-2">
+        購入者
+      </div>
+      <div class="col-md-3">
+        <u><%= link_to (@order.customer.last_name + " " + @order.customer.first_name), admin_customer_path(@order.customer_id), class: "text-body" %></u>
+      </div>
     </div>
-    <div>
-      注文日　<%= l @order.created_at, format: :ymd %>
+    <div class="row my-3">
+      <div class="col-md-2">
+        注文日
+      </div>
+      <div class="col-md-3">
+        <%= l @order.created_at, format: :ymd %>
+      </div>
     </div>
-    <div>
-      配送先  <%= "〒" + @order.postal_code + " " + @order.address + @order.name %>
+    <div class="row my-3">
+      <div class="col-md-2">
+        配送先
+      </div>
+      <div class="col-md-7">
+        <%= "〒" + @order.postal_code + " " + @order.address + @order.name %>
+      </div>
     </div>
-    <div>
-      注文ステータス <%= f.select :order_status, Order.order_statuses.keys.to_a %> <%= f.submit "更新", class: "btn btn-success" %>
+    <div class="row my-3">
+      <div class="col-md-2">
+        支払方法
+      </div>
+      <div class="col-md-3">
+        <%= t("enums.order.payment_method.#{@order.payment_method}") %>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-md-2">
+        注文ステータス
+      </div>
+      <div class="col-md-3 form-inline">
+        <%= f.select :order_status, Order.order_statuses.keys.to_a, {}, class: "form-control", style: "width:50%" %>
+        <%= f.submit "更新", class: "btn btn-success ml-3" %>
+      </div>
     </div>
   <% end %>
 
-  <table>
-    <thead>
-      <tr>
-        <th>商品名</th>
-        <th>単価(税込み)</th>
-        <th>数量</th>
-        <th>小計</th>
-        <th>制作ステータス</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @order.order_items.each do |order_item| %>
-        <tr>
-            <td><%= order_item.item.name %></td>
-            <% price = order_item.price_including_tax %>
-            <td><%= price.to_s(:delimited, delimiter: ',') %></td>
-            <td><%= amount = order_item.amount %></td>
-            <% subtotal_price = price * amount %>
-            <td><%= subtotal_price.to_s(:delimited, delimiter: ',') %></td>
-            <%= form_with model: order_item, url: admin_order_item_path(order_item.id), local: true do |f| %>
-            <!-- フォームを<table>の外に持っていかないと発火しないよ -->
-              <td><%= f.select :make_status, OrderItem.make_statuses.keys.to_a %></td>
-              <td><%= f.submit "更新", class: "btn btn-success" %></td>
-            <% end %>
-          <% end %>
-        </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="table-active">商品名</th>
+            <th class="table-active">単価(税込み)</th>
+            <th class="table-active">数量</th>
+            <th class="table-active">小計</th>
+            <th class="table-active">制作ステータス</th>
+            <th class="table-active"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_items.each do |order_item| %>
+            <tr>
+                <td><%= order_item.item.name %></td>
+                <% price = order_item.price_including_tax %>
+                <td><%= price.to_s(:delimited, delimiter: ',') %></td>
+                <td><%= amount = order_item.amount %></td>
+                <% subtotal_price = price * amount %>
+                <% total_price += subtotal_price %>
+                <td><%= subtotal_price.to_s(:delimited, delimiter: ',') %></td>
+                <%= form_with model: order_item, url: admin_order_item_path(order_item.id), local: true do |f| %>
+                <!-- フォームを<table>の外に持っていかないと発火しないよ -->
+                  <td><%= f.select :make_status, OrderItem.make_statuses.keys.to_a, {}, class: "form-control" %></td>
+                  <td><%= f.submit "更新", class: "btn btn-success" %></td>
+                <% end %>
+              <% end %>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-3 mt-auto">
+      <div class="row my-3">
+        <div class="col-md-6 text-center">
+          商品合計
+        </div>
+        <div class="col-md-6 text-right">
+          <%= total_price.to_s(:delimited, delimiter: ',') %>円
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-md-6 text-center">
+          送料
+        </div>
+        <div class="col-md-6 text-right">
+          <%= @order.postage %>円
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-md-6 text-center">
+          請求金額合計
+        </div>
+        <div class="col-md-6 text-right">
+          <%= (total_price + @order.postage).to_s(:delimited, delimiter: ',') %>円
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

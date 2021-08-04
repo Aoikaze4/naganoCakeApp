@@ -1,1 +1,86 @@
-顧客詳細情報
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 mt-5 m-4 px-4 py-1 bg-secondary text-center">
+      <h2><%= @customer.last_name + @customer.first_name + "さんの会員詳細" %></h2>
+    </div>
+  </div>
+
+  <div class="row my-3 mt-4">
+    <div class="col-md-3">
+      会員ID
+    </div>
+    <div class="col-md-3">
+      <%= @customer.id %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">
+      氏名
+    </div>
+    <div class="col-md-3">
+      <%= @customer.last_name + " " + @customer.first_name %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">
+      フリガナ
+    </div>
+    <div class="col-md-3">
+      <%= @customer.last_name_kana + " " + @customer.first_name_kana %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">
+      郵便番号
+    </div>
+    <div class="col-md-3">
+      <%= @customer.postal_code %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">
+      住所
+    </div>
+    <div class="col-md-6">
+      <%= @customer.address %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">
+      電話番号
+    </div>
+    <div class="col-md-3">
+      <%= @customer.telephone_number %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">
+      メールアドレス
+    </div>
+    <div class="col-md-3">
+      <%= @customer.email %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">
+      会員ステータス
+    </div>
+    <div class="col-md-3">
+      <% if @customer.is_active == true %>
+        <p class="text-success">有効</p>
+      <% else %>
+        <p class="text-secondary">退会</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md3 offset-md-3">
+      <%= link_to "編集する", edit_admin_customer_path, class: "btn btn-success" %>
+    </div>
+    <div class="col-md-4 offset-md-1">
+      <%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+
+</div>
