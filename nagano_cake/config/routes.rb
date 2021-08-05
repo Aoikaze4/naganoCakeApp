@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins, only: [:sign_in, :sing_out, :session], controllers: {sessions: 'admin/sessions'}
-  devise_for :customers, controllers: {sessions: 'public/customers/sessions'}
+  devise_for :customers, controllers: {sessions: 'public/customers/sessions', registrations: 'public/customers/registrations'}
 
   get 'top', to: 'homes#top'
   get 'about', to: 'homes#about'

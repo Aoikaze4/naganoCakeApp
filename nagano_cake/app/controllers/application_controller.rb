@@ -1,11 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # def after_sign_in_path_for(resource)
-  #   items_path
-  # end
-  # ↑ログイン後遷移先をいじりたい場合。管理者トップページとして後程必要
-
   def add_tax_price(price)
     tax = 1.10
     (price * tax).round
