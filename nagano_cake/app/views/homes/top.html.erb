@@ -21,7 +21,7 @@
           <p class="my-1"><%= link_to f.name, item_path(f.id) %></p>
         </div>
         <div>
-          <p>￥ <%= f.price.to_s(:delimited, delimiter: ',') %></p>
+          <p>￥ <%= add_tax_price(f.price).to_s(:delimited, delimiter: ',') %></p>
         </div>
       </div>
       <% end %>

@@ -10,10 +10,10 @@
       <table class="table table-hover table-inverse">
         <thead>
           <tr>
-            <th class="table-active">購入日時</th>
-            <th class="table-active">購入者</th>
-            <th class="table-active">注文個数</th>
-            <th class="table-active">注文ステータス</th>
+            <th class="table-active col-md-3">購入日時</th>
+            <th class="table-active col-md-4">購入者</th>
+            <th class="table-active col-md-2">注文個数</th>
+            <th class="table-active col-md-3">注文ステータス</th>
           </tr>
         </thead>
         <tbody>
@@ -21,7 +21,7 @@
             <% @orders.each do |f| %>
             <tr>
               <td><u><%= link_to (l f.created_at, format: :default), admin_order_path(f.id), class: "text-body" %></u></td>
-              <td><%= f.name %></td>
+              <td><%= f.customer.last_name + " " + f.customer.first_name %></td>
 
               <% amount = 0 %>
               <% f.order_items.each do |order_item| %>
